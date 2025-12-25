@@ -1,0 +1,10 @@
+# Python cache files
+gist-app/**/__pycache__/
+gist-app/**/*.pyc
+gist-app/**/*.pyo
+gist-app/**/*.pyd
+
+
+# Virtual environments
+venv/
+.env

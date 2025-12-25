@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN  pip install --no-cache-dir -r requirements.txt
 
 # Copy all application files
-COPY gist-app/ ./gist-app/
+COPY . .
 
 # Change ownership of the files to the non-root user to avoid permission issues
 RUN chown -R expert:expert /gist-app

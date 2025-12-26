@@ -8,3 +8,6 @@ gist-app/**/*.pyd
 # Virtual environments
 venv/
 .env
+
+# IDE files
+.idea/

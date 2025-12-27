@@ -65,4 +65,5 @@ jobs:
           --set image.repository=${{ env.DOCKERHUB_REPO }} \
           --set image.tag=${{ needs.build_image.outputs.image_tag }} \
           --set 'imagePullSecrets[0].name=dockerhub-secret'
+          kubectl rollout status deployment/gist-app-k8s-gist
           

@@ -4,8 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-  env:
-    DOCKERHUB_REPO: mjhiremath776/github_image
+env:
+  DOCKERHUB_REPO: mjhiremath776/github_image
 jobs:
   build:
     name: Build

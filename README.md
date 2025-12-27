@@ -1,43 +1,67 @@
-## :warning: Please read these instructions carefully and entirely first
-* Clone this repository to your local machine.
-* Use your IDE of choice to complete the assignment.
-* When you have completed the assignment, you need to  push your code to this repository and [mark the assignment as completed by clicking here](https://app.snapcode.review/submission_links/5cfb7c0e-bbbf-4bdf-85d5-d1691d17b6f7).
-* Once you mark it as completed, your access to this repository will be revoked. Please make sure that you have completed the assignment and pushed all code from your local machine to this repository before you click the link.
+# Github Gist App
 
-## Operability Take-Home Exercise
+## Overview
+This project is a lightweight HTTP web server API built using Python. The application integrates with the public GitHub Gists API and provides guidance at the root endpoint (/) on how to retrieve publicly available gists for a specific GitHub user via the /<user> endpoint.
 
-Welcome to the start of our recruitment process for Operability Engineers. It was great to speak to you regarding an opportunity to join the Equal Experts network!
+## Key Features
 
-Please write code to deliver a solution to the problems outlined below.
+1. **HTTP API:**
+   - Developed a simple and reliable HTTP API using the Flask framework.
+   - Exposes endpoints to access public GitHub gists for a given user.
 
-We appreciate that your time is valuable and do not expect this exercise to **take more than 90 minutes**. If you think this exercise will take longer than that, I **strongly** encourage you to please get in touch to ask any clarifying questions.
+2. **Automated Testing:**
+   - Implemented automated tests to verify API behavior and ensure reliability.
+   - Tests use the sample GitHub user octocat for demonstration and validation.
 
-### Submission guidelines
-**Do**
-- Provide a README file in text or markdown format that documents a concise way to set up and run the provided solution.
-- Take the time to read any applicable API or service docs, it may save you significant effort.
-- Make your solution simple and clear. We aren't looking for overly complex ways to solve the problem since in our experience, simple and clear solutions to problems are generally the most maintainable and extensible solutions.
+3. **Dockerization:**
+   - Containerized the application using Docker for consistent and portable deployment.
+   - Includes a Dockerfile for building the application image.
+   - The API runs inside a Docker container and listens on port 8080.
 
-**Don't**
+## Running the application Locally Using Python
 
-Expect the reviewer to dedicate a machine to review the test by:
+### Prerequisites
+Python 3.12 and pip installed on your machine.
 
-- Installing software globally that may conflict with system software
-- Requiring changes to system-wide configurations
-- Providing overly complex solutions that need to spin up a ton of unneeded supporting dependencies. We aspire to keep our dev experiences as simple as possible (but no simpler)!
-- Include identifying information in your submission. We are endeavouring to make our review process anonymous to reduce bias.
+### Instructions
+1. **Clone Repository**
+   - Run the command: **git clone git@github.com:EqualExperts-Assignments/equal-experts-eager-hospitable-invigorating-complement-f17f63678cbd.git**
+2. **Navigate to gist-app folder**
+   - Change directory: **cd gist-app**
+3. **Create a virtual environment**
+   - Run this command to create a virtual environment: **python3 -m venv venv**
+   - Activate the virtual environment:
+     - On macOS/Linux: **source venv/bin/activate**
+     - On Windows: **venv\Scripts\activate**
+4. **Install dependencies**
+   - Run this command to install required packages: **pip install -r requirements.txt**
+5. **Run tests**
+   - Run this command to execute tests: **pytest -v**
+6. **Run the application**
+   - Start the Flask application: **python gist_app.py**
 
-### Exercise
-If you have any questions on the below exercise, please do get in touch and we’ll answer as soon as possible.
+Once the application starts, you can access GitHub Gists API at http://localhost:8080
 
-#### Build an API, test it, and package it into a container
-- Build a simple HTTP web server API in any general-purpose programming language[^1] that interacts with the GitHub API and responds to requests on `/<USER>` with a list of the user’s publicly available Gists[^2].
-- Create an automated test to validate that your web server API works. An example user to use as test data is `octocat`.
-- Package the web server API into a docker container that listens for requests on port `8080`. You do not need to publish the resulting container image in any container registry, but we are expecting the Dockerfile in the submission.
-- The solution may optionally provide other functionality (e.g. pagination, caching) but the above **must** be implemented.
+## Running the application Locally Using Docker
 
-Best of luck,  
-Equal Experts
-__________________________________________
-[^1]: For example Go, Python or Ruby but not Bash or Powershell.  
-[^2]: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28
+### Prerequisites
+Docker and git installed on your machine.
+
+### Instructions
+1. **Clone Repository**
+   - Run the command: **git clone git@github.com:EqualExperts-Assignments/equal-experts-eager-hospitable-invigorating-complement-f17f63678cbd.git**
+2. **Navigate to gist-app folder**
+   - Change directory: **cd gist-app**
+3. **Build the Docker image**
+   - Run this command to build the application image: **docker build -t <<image-name:tag>> .**
+4. **Run the Docker Container**
+   - Run this command to run the application: **docker run -p 8080:8080 --name gist-app <<image-name:tag>>**
+
+Once container starts, you can access GitHub Gists API at http://localhost:8080
+
+## API Endpoints
+- `GET /`: Provides guidance on how to use the API.
+- `GET /<user>`: Retrieves the list of publicly available gists for the specified GitHub user.
+  `<user>`: Replace with the GitHub username whose gists you want to retrieve.
+  Example: `/octocat` to get gists for the user "octocat".
+  Response: A JSON array containing the user's public gists.

@@ -7,8 +7,6 @@ jobs:
   build:
     name: build
     runs-on: ubuntu-latest
-    #    outputs:
-    #      image_tag: ${{ steps.create_tag.outputs.image_tag}}
     steps:
       - uses: actions/checkout@v5
       - name: Set up Python
@@ -21,7 +19,16 @@ jobs:
           pip install -r gist-app/requirements.txt
       - name: Run tests
         run: |
-          pytest -v gist-app/
+          pytest -v
+
+  build_image:
+    name: build_image
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.create_tag.outputs.image_tag}}
+    steps:
+      - uses: actions/checkout@v5
       - name: generate github tag
         id: create_tag
         run: echo "::set-output name=image_tag::$(echo $GITHUB_SHA)"

@@ -41,6 +41,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and Push Docker Image
         run: |
+            echo ${{ env.DOCKERHUB_REPO }}
             docker build -t ${{ env.DOCKERHUB_REPO }}:${{ steps.image_tag.outputs.image_tag }} .
             docker push ${{ env.DOCKERHUB_REPO }}:${{ steps.image_tag.outputs.image_tag }}
     outputs:
